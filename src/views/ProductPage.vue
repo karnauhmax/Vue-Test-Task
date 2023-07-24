@@ -49,10 +49,11 @@ const currentProductId = route.params.id;
 
 onBeforeRouteUpdate(async(to, from) => {
   const newId = to.params.id;
-  const itemToCheck = products.value.findIndex(item => item.id == newId);
-  
-  if (itemToCheck !== -1) {
-    product.value = await fetchProductById(newId);
+  const itemToCheck = await fetchProductById(newId);
+
+
+  if (itemToCheck) {
+    product.value = itemToCheck;
   } else {
     router.push({path: '/404'})
   }
