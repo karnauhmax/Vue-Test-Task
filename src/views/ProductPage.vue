@@ -46,6 +46,8 @@ const {fetchProductById} = store;
 const currentProductId = route.params.id;
 
 //handling scenario when user can change product's route to invalid
+// this part of code is for demonstration and used to handle test task problem
+// I wouldn't use this code in production
 
 onBeforeRouteUpdate(async(to, from) => {
   const newId = to.params.id;

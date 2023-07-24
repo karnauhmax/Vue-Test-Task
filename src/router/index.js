@@ -13,6 +13,8 @@ const router = createRouter({
     { path: '/product/:id', component: ProductPage, name: "Product",
   
   //handling scenario when user can change product's route to invalid from the main page
+  // this part of code is for demonstration and used to handle test task problem
+  // I wouldn't use this code in production
 
    async beforeEnter(to, from, next) {
         const store = useStore();
