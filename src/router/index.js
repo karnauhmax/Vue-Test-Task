@@ -16,21 +16,16 @@ const router = createRouter({
 
    async beforeEnter(to, from, next) {
         const store = useStore();
-        const { products } = storeToRefs(store);
+        const {fetchProductById} = store;
+        const enterId = to.params.id;
 
-        //page reload case
-        if (products.value.length === 0) {
-          await store.fetchProducts();
-        }
+        const itemToCheck = await fetchProductById(enterId);
 
-        const idToCheck = to.params.id;
-        const itemToCheck = products.value.findIndex(item => item.id == idToCheck);
-
-        if (products.value[itemToCheck]) {
-          next();
-        } else {
-          next('/404')
-        }
+       if (itemToCheck) {
+        next();
+       } else {
+        next('/404')
+       }
     },
   },
     { path: '/cart', component: CartPage, name: "Cart" },
